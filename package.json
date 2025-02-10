@@ -3,10 +3,6 @@
   "version": "1.0.0",
   "description": "ESLint config for JavaScript, TypeScript, and React projects at newo.ai",
   "main": "index.js",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/newo-ai/khalezin-test-public"
-  },
   "author": "newo.ai",
   "license": "MIT",
   "keywords": [
