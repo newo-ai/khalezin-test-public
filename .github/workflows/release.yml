@@ -22,8 +22,8 @@ jobs:
         id: app-token
         uses: getsentry/action-github-app-token@v2
         with:
-          app_id: ${{ secrets.app_id }}
-          private_key: ${{ secrets.private_key }}
+          app_id: ${{ secrets.PAT_APP_ID }}
+          private_key: ${{ secrets.PAT_APP_PRIVATE_KEY }}
 
       - name: Checkout code
         uses: actions/checkout@v4
@@ -56,5 +56,5 @@ jobs:
         if: steps.semantic.outputs.VERIFY_RELEASE_VERSION != ''
         env:
           GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
-          NPM_TOKEN: ${{ inputs.npm_token }}
+          NPM_TOKEN: ${{ secrets.npm_token }}
         run: npx semantic-release
