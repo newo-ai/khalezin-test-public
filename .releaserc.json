@@ -35,10 +35,9 @@
       }
     ],
     [
-      "@semantic-release/exec",
+      "@semantic-release/npm",
       {
-        "publishCmd": "echo \"NEXT_RELEASE_VERSION=${nextRelease.version}\" >> $GITHUB_OUTPUT",
-        "verifyReleaseCmd": "echo \"VERIFY_RELEASE_VERSION=${nextRelease.version}\" >> $GITHUB_OUTPUT"
+        "npmPublish": true
       }
     ],
     [
@@ -64,7 +63,7 @@
     [
       "@semantic-release/git",
       {
-        "assets": ["CHANGELOG.md"],
+        "assets": ["package.json", "CHANGELOG.md"],
         "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
       }
     ]
