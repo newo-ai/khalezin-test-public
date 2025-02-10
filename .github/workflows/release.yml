@@ -15,8 +15,8 @@ jobs:
       contents: read
       id-token: write
     outputs:
-      NEXT_RELEASE_VERSION: ${{ steps.semantic.outputs.NEXT_RELEASE_VERSION }}
-      VERIFY_RELEASE_VERSION: ${{ steps.semantic.outputs.VERIFY_RELEASE_VERSION }}
+      NEXT_RELEASE_VERSION: ${{ steps.release-template.outputs.NEXT_RELEASE_VERSION }}
+      VERIFY_RELEASE_VERSION: ${{ steps.release-template.outputs.VERIFY_RELEASE_VERSION }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -26,7 +26,7 @@ jobs:
 
       - name: Release template
         uses: ./.github/actions/release
-        id: semantic
+        id: release-template
         with:
           app_id: ${{ secrets.PAT_APP_ID }}
           private_key: ${{ secrets.PAT_APP_PRIVATE_KEY }}
