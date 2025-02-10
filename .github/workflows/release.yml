@@ -10,28 +10,44 @@ permissions: {}
 jobs:
   check-release:
     runs-on: ubuntu-latest
-    uses: ./.github/actions/release@main
+    timeout-minutes: 15
     permissions:
       contents: read
       id-token: write
-    with:
-      args: --dry-run --no-ci
-    secrets:
-      app_id: ${{ secrets.PAT_APP_ID }}
-      app_private_key: ${{ secrets.PAT_APP_PRIVATE_KEY }}
-      npm_token: ${{ secrets.NPM_TOKEN }}
+    steps:
+      - name: Use template
+        uses: ./.github/actions/release
+        secrets:
+          app_id: ${{ secrets.PAT_APP_ID }}
+          app_private_key: ${{ secrets.PAT_APP_PRIVATE_KEY }}
+
+      - name: Semantic release
+        id: semantic
+        env:
+          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npx semantic-release --dry-run --no-ci
 
 
   release:
     runs-on: ubuntu-latest
-    uses: ./.github/actions/release@main
+    timeout-minutes: 15
     needs: check-release
     permissions:
       contents: write
       issues: write
       pull-requests: write
       id-token: write
-    secrets:
-      app_id: ${{ secrets.PAT_APP_ID }}
-      app_private_key: ${{ secrets.PAT_APP_PRIVATE_KEY }}
-      npm_token: ${{ secrets.NPM_TOKEN }}
+    steps:
+      - name: Use template
+        uses: ./.github/actions/release
+        secrets:
+          app_id: ${{ secrets.PAT_APP_ID }}
+          app_private_key: ${{ secrets.PAT_APP_PRIVATE_KEY }}
+
+      - name: Semantic release
+        id: semantic
+        env:
+          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npx semantic-release
