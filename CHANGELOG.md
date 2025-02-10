@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/newo-ai/khalezin-test-public/compare/v1.0.1...v1.0.2) (2025-02-10)
+
+
+### Bug Fixes
+
+* testing24 ([f9f5fcd](https://github.com/newo-ai/khalezin-test-public/commit/f9f5fcde907cac33eba37e25edda3894aedf8282))
+
 ## [1.0.1](https://github.com/newo-ai/khalezin-test-public/compare/v1.0.0...v1.0.1) (2025-02-10)
 
 
