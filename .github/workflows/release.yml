@@ -17,8 +17,10 @@ jobs:
     with:
       args: --dry-run --no-ci
     secrets:
-      pat_app_id: ${{ secrets.PAT_APP_ID }}
-      pat_app_private_key: ${{ secrets.PAT_APP_PRIVATE_KEY }}
+      app_id: ${{ secrets.PAT_APP_ID }}
+      app_private_key: ${{ secrets.PAT_APP_PRIVATE_KEY }}
+      npm_token: ${{ secrets.NPM_TOKEN }}
+
 
   release:
     runs-on: ubuntu-latest
@@ -30,5 +32,6 @@ jobs:
       pull-requests: write
       id-token: write
     secrets:
-      pat_app_id: ${{ secrets.PAT_APP_ID }}
-      pat_app_private_key: ${{ secrets.PAT_APP_PRIVATE_KEY }}
+      app_id: ${{ secrets.PAT_APP_ID }}
+      app_private_key: ${{ secrets.PAT_APP_PRIVATE_KEY }}
+      npm_token: ${{ secrets.NPM_TOKEN }}

@@ -9,9 +9,8 @@ secrets:
     required: true
   private_key:
     required: true
-  secrets:
-    npm_token:
-      required: true
+  npm_token:
+    required: true
 
 runs:
   using: composite
@@ -20,8 +19,8 @@ runs:
       id: app-token
       uses: getsentry/action-github-app-token@v2
       with:
-        app_id: ${{ secrets.pat_app_id }}
-        private_key: ${{ secrets.pat_app_private_key }}
+        app_id: ${{ secrets.app_id }}
+        private_key: ${{ secrets.app_private_key }}
 
     - name: Install git
       run: sudo apt update && sudo apt install -y git
