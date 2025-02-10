@@ -4,7 +4,6 @@ inputs:
   args:
     required: false
     description: "Arguments for semver"
-secrets:
   app_id:
     required: true
   private_key:
@@ -19,8 +18,8 @@ runs:
       id: app-token
       uses: getsentry/action-github-app-token@v2
       with:
-        app_id: ${{ secrets.app_id }}
-        private_key: ${{ secrets.app_private_key }}
+        app_id: ${{ inputs.app_id }}
+        private_key: ${{ inputs.app_private_key }}
 
     - name: Install git
       run: sudo apt update && sudo apt install -y git
@@ -40,5 +39,5 @@ runs:
       id: semantic
       env:
         GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
-        NPM_TOKEN: ${{ secrets.npm_token }}
+        NPM_TOKEN: ${{ inputs.npm_token }}
       run: npx semantic-release ${{ inputs.args }}
