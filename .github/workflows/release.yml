@@ -33,6 +33,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     needs: check-release
+    if: needs.check-release.outputs.VERIFY_RELEASE_VERSION != ''
     permissions:
       contents: write
       issues: write
