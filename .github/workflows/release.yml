@@ -25,6 +25,7 @@ jobs:
 
       - name: Release template
         uses: ./.github/actions/release
+        id: semantic
         with:
           app_id: ${{ secrets.PAT_APP_ID }}
           private_key: ${{ secrets.PAT_APP_PRIVATE_KEY }}
