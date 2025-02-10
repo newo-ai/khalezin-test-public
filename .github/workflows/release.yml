@@ -22,8 +22,14 @@ jobs:
           app_id: ${{ secrets.pat_app_id }}
           private_key: ${{ secrets.pat_app_private_key }}
 
+      - name: Install git
+        run: sudo apt update && sudo apt install -y git
+
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -60,8 +66,14 @@ jobs:
           app_id: ${{ secrets.pat_app_id }}
           private_key: ${{ secrets.pat_app_private_key }}
 
+      - name: Install git
+        run: sudo apt update && sudo apt install -y git
+
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
