@@ -12,8 +12,8 @@ jobs:
     runs-on: ubuntu-latest
     uses: ./.github/actions/release
     permissions:
-      contents: read # to pull repository
-      id-token: write # to enable use of OIDC for npm provenance
+      contents: read
+      id-token: write
     with:
       args: --dry-run --no-ci
     secrets:

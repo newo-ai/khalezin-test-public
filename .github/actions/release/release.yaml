@@ -1,4 +1,4 @@
-name: Setup/Cache Env
+name: Release template
 
 inputs:
   args:
@@ -9,6 +9,9 @@ secrets:
     required: true
   private_key:
     required: true
+  secrets:
+    npm_token:
+      required: true
 
 runs:
   using: composite
