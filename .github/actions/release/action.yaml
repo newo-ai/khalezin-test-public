@@ -6,10 +6,13 @@ inputs:
     description: "Arguments for semver"
   app_id:
     required: true
+    description: "APP ID"
   private_key:
     required: true
+    description: "The role to assume"
   npm_token:
     required: true
+    description: "The role to assume"
 
 runs:
   using: composite
