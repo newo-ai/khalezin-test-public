@@ -10,7 +10,7 @@ permissions: {}
 jobs:
   check-release:
     runs-on: ubuntu-latest
-    uses: ./.github/actions/release
+    uses: ./.github/actions/release@main
     permissions:
       contents: read
       id-token: write
