@@ -1,0 +1,48 @@
+name: Setup/Cache Env
+
+inputs:
+  args:
+    required: false
+    description: "Arguments for semver"
+secrets:
+  app_id:
+    required: true
+  private_key:
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: App token
+      id: app-token
+      uses: getsentry/action-github-app-token@v2
+      with:
+        app_id: ${{ secrets.pat_app_id }}
+        private_key: ${{ secrets.pat_app_private_key }}
+
+    - name: Install git
+      run: sudo apt update && sudo apt install -y git
+
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        persist-credentials: false
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20.11.1
+
+    - name: Update NPM version
+      run: npm i -g npm@10.5.0
+
+    - name: Install dependencies
+      run: npm install semver@7.6.3 semantic-release@23.0.2 @semantic-release/changelog@6.0.3 @semantic-release/git@10.0.1 conventional-changelog-conventionalcommits@7.0.2 conventional-changelog-eslint@5.0.0 @semantic-release/exec@6.0.3 --legacy-peer-deps --no-save
+
+    - name: Semantic release
+      id: semantic
+      env:
+        GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
+        NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      run: npx semantic-release ${{ inputs.args }}
