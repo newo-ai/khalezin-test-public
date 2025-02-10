@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-newo",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "ESLint config for JavaScript, TypeScript, and React projects at newo.ai",
   "main": "index.js",
   "author": "newo.ai",

@@ -1,3 +1,18 @@
+## [1.0.5](https://github.com/newo-ai/khalezin-test-public/compare/v1.0.4...v1.0.5) (2025-02-10)
+
+
+### Bug Fixes
+
+* testing10 ([5bec8b7](https://github.com/newo-ai/khalezin-test-public/commit/5bec8b7510b7ba49007d8277c52c69d0b8648067))
+* testing11 ([a6b6a47](https://github.com/newo-ai/khalezin-test-public/commit/a6b6a47e3e421097f1cdcabc6789cfacd8f729ea))
+* testing3 ([b03ed38](https://github.com/newo-ai/khalezin-test-public/commit/b03ed38455929b2c6cc94f14ca3e84ac3d2d6110))
+* testing4 ([a5537c5](https://github.com/newo-ai/khalezin-test-public/commit/a5537c51f31bd2fd32bf4794cfec7acfbaea2cf3))
+* testing5 ([349d4e2](https://github.com/newo-ai/khalezin-test-public/commit/349d4e2fe75a1161560dcbc07944d4ee4632607a))
+* testing6 ([d1c62a4](https://github.com/newo-ai/khalezin-test-public/commit/d1c62a4f6ff4c964f56666d27b1c1cfc9e9e399c))
+* testing7 ([788fd09](https://github.com/newo-ai/khalezin-test-public/commit/788fd09800046aec5672aa0e89521b2706c03ba7))
+* testing8 ([717ffa0](https://github.com/newo-ai/khalezin-test-public/commit/717ffa04b95f5cc44c6378ff4264c284ab7fec5e))
+* testing9 ([9cc7990](https://github.com/newo-ai/khalezin-test-public/commit/9cc7990d5b67a731a75691a8f5cdcc5aed5f5f66))
+
 ## [1.0.4](https://github.com/newo-ai/khalezin-test-public/compare/v1.0.3...v1.0.4) (2025-02-10)
 
 
