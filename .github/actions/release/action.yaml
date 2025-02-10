@@ -17,9 +17,9 @@ inputs:
 
 outputs:
   NEXT_RELEASE_VERSION:
-    value: ${{ jobs.release.outputs.NEXT_RELEASE_VERSION }}
+    description: Next release version
   VERIFY_RELEASE_VERSION:
-    value: ${{ jobs.release.outputs.VERIFY_RELEASE_VERSION }}
+    description: Verify release version
 
 runs:
   using: composite
