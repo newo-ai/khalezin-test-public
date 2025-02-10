@@ -1,17 +1,9 @@
 {
   "branches": [
-    "release/+([0-9])?(.{+([0-9]),x}).x",
     "main",
+    "release/+([0-9])?(.{+([0-9]),x}).x",
     "next",
-    "next-major",
-    {
-      "name": "beta",
-      "prerelease": "true"
-    },
-    {
-      "name": "alpha",
-      "prerelease": "true"
-    }
+    "next-major"
   ],
   "ci": true,
   "debug": true,
