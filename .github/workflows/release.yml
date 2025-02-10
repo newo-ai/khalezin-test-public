@@ -25,7 +25,7 @@ jobs:
         uses: ./.github/actions/release
         with:
           app_id: ${{ secrets.PAT_APP_ID }}
-          app_private_key: ${{ secrets.PAT_APP_PRIVATE_KEY }}
+          private_key: ${{ secrets.PAT_APP_PRIVATE_KEY }}
           npm_token: ${{ secrets.NPM_TOKEN }}
           args: --dry-run --no-ci
 
@@ -49,5 +49,5 @@ jobs:
         uses: ./.github/actions/release
         with:
           app_id: ${{ secrets.PAT_APP_ID }}
-          app_private_key: ${{ secrets.PAT_APP_PRIVATE_KEY }}
+          private_key: ${{ secrets.PAT_APP_PRIVATE_KEY }}
           npm_token: ${{ secrets.NPM_TOKEN }}
