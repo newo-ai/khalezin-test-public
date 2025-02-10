@@ -8,51 +8,53 @@ on:
 permissions: {}
 
 jobs:
-  check-release:
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
-    permissions:
-      contents: read
-      id-token: write
-    outputs:
-      NEXT_RELEASE_VERSION: ${{ steps.release-template.outputs.NEXT_RELEASE_VERSION }}
-      VERIFY_RELEASE_VERSION: ${{ steps.release-template.outputs.VERIFY_RELEASE_VERSION }}
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          persist-credentials: false
-
-      - name: Release template
-        uses: ./.github/actions/release
-        id: release-template
-        with:
-          app_id: ${{ secrets.PAT_APP_ID }}
-          private_key: ${{ secrets.PAT_APP_PRIVATE_KEY }}
-          npm_token: ${{ secrets.NPM_TOKEN }}
-          args: --dry-run --no-ci
-
   release:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     needs: check-release
-    if: needs.check-release.outputs.VERIFY_RELEASE_VERSION != ''
     permissions:
       contents: write
       issues: write
       pull-requests: write
       id-token: write
     steps:
+      - name: App token
+        id: app-token
+        uses: getsentry/action-github-app-token@v2
+        with:
+          app_id: ${{ secrets.app_id }}
+          private_key: ${{ secrets.private_key }}
+
       - name: Checkout code
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
           persist-credentials: false
 
-      - name: Release template
-        uses: ./.github/actions/release
+      - name: Install git
+        run: sudo apt update && sudo apt install -y git
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          app_id: ${{ secrets.PAT_APP_ID }}
-          private_key: ${{ secrets.PAT_APP_PRIVATE_KEY }}
-          npm_token: ${{ secrets.NPM_TOKEN }}
+          node-version: 20.11.1
+
+      - name: Update NPM version
+        run: npm i -g npm@10.5.0
+
+      - name: Install dependencies
+        run: npm install semver@7.6.3 semantic-release@23.0.2 @semantic-release/changelog@6.0.3 @semantic-release/git@10.0.1 conventional-changelog-conventionalcommits@7.0.2 conventional-changelog-eslint@5.0.0 @semantic-release/exec@6.0.3 --legacy-peer-deps --no-save
+
+      - name: Semantic release dry-run
+        id: semantic
+        env:
+          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
+          NPM_TOKEN: ${{ secrets.npm_token }}
+        run: npx semantic-release
+
+      - name: Semantic release
+        if: steps.semantic.outputs.VERIFY_RELEASE_VERSION != ''
+        env:
+          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
+          NPM_TOKEN: ${{ inputs.npm_token }}
+        run: npx semantic-release
