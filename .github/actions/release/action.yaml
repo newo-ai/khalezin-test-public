@@ -15,8 +15,17 @@ inputs:
     required: true
     description: "NPM TOKEN"
 
+outputs:
+  NEXT_RELEASE_VERSION:
+    value: ${{ jobs.release.outputs.NEXT_RELEASE_VERSION }}
+  VERIFY_RELEASE_VERSION:
+    value: ${{ jobs.release.outputs.VERIFY_RELEASE_VERSION }}
+
 runs:
   using: composite
+  outputs:
+    NEXT_RELEASE_VERSION: ${{ steps.semantic.outputs.NEXT_RELEASE_VERSION }}
+    VERIFY_RELEASE_VERSION: ${{ steps.semantic.outputs.VERIFY_RELEASE_VERSION }}
   steps:
     - name: App token
       id: app-token
