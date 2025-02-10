@@ -1,4 +1,5 @@
 name: Release template
+description: "Release template"
 
 inputs:
   args:
@@ -9,10 +10,10 @@ inputs:
     description: "APP ID"
   private_key:
     required: true
-    description: "The role to assume"
+    description: "APP private key"
   npm_token:
     required: true
-    description: "The role to assume"
+    description: "NPM TOKEN"
 
 runs:
   using: composite

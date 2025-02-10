@@ -26,6 +26,7 @@ jobs:
         with:
           app_id: ${{ secrets.PAT_APP_ID }}
           app_private_key: ${{ secrets.PAT_APP_PRIVATE_KEY }}
+          npm_token: ${{ secrets.NPM_TOKEN }}
           args: --dry-run --no-ci
 
   release:
@@ -49,3 +50,4 @@ jobs:
         with:
           app_id: ${{ secrets.PAT_APP_ID }}
           app_private_key: ${{ secrets.PAT_APP_PRIVATE_KEY }}
+          npm_token: ${{ secrets.NPM_TOKEN }}
