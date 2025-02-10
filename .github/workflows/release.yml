@@ -24,7 +24,7 @@ jobs:
 
   release:
     runs-on: ubuntu-latest
-    uses: ./.github/actions/release
+    uses: ./.github/actions/release@main
     needs: check-release
     permissions:
       contents: write
